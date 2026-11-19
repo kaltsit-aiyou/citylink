@@ -14,7 +14,7 @@
 
 客户端或接口工具通过 HTTP 请求访问后端。后端接收请求、验证身份、执行相应业务规则，然后读取或写入 MySQL，并返回 JSON 结果。
 
-后端计划使用 Java 17、Spring Boot 3、Maven、MyBatis 和 MySQL。登录与接口访问控制计划使用 Spring Security 和 JWT。具体依赖版本在创建工程时确定。
+后端计划使用 Java 17、Spring Boot 4.1.2、Maven、MyBatis 和 MySQL。登录与接口访问控制计划使用 Spring Security 和 JWT。具体依赖版本在创建工程时确定。
 
 在 IDEA 中创建工程时核对项目 JDK 为 17。IDEA 已有可用的 Maven；MySQL 等依赖环境按开发进度准备。
 
