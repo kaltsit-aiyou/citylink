@@ -1,0 +1,112 @@
+<!doctype html>
+<!-- HTML 定义页面结构；CSS 决定外观；JavaScript 处理交互和接口请求。 -->
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="CityLink 城邻云，让你与城市的美好日常相遇。">
+  <title>CityLink 城邻云 · 我的城市生活</title>
+  <link rel="icon" href="/assets/mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/app.css">
+  <!-- defer 表示等 HTML 解析完成后再运行脚本，因此可以找到页面元素。 -->
+  <script src="/assets/app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要内容</a>
+  <header class="header">
+    <a class="brand" href="#login" aria-label="城邻云首页"><img src="/assets/mark.svg" alt="" width="40" height="40"><span>城邻云<small>CITYLINK</small></span></a>
+    <span class="header-note">把日常，过成喜欢的模样。</span>
+    <div class="header-account" id="header-account" hidden><span id="header-nickname"></span><button type="button" class="text-button" id="logout">退出登录</button></div>
+    <span class="header-tag" id="header-tag">你的城市生活，从这里开始</span>
+  </header>
+
+  <main id="main">
+    <section class="welcome" id="welcome" aria-label="账户登录与注册">
+      <div class="story">
+        <span class="eyebrow"><span class="tiny-mark"></span> 相遇，就在附近</span>
+        <h1>在熟悉的城市，<br>发现新的<span>喜欢。</span></h1>
+        <p class="story-description">一家街角小店，一段值得分享的日常。<br>从认识彼此开始，让城市多一点温度。</p>
+        <div class="city-art" aria-hidden="true">
+          <svg viewBox="0 0 640 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="497" cy="65" r="35" fill="#F8D67B"/>
+            <path d="M51 91h83m-66-14h48M406 39h42" stroke="#ADC9C0" stroke-width="4" stroke-linecap="round"/>
+            <path d="M30 263c94-37 157-30 240-5 102 31 205-54 338-11" stroke="#B7CFC2" stroke-width="2"/>
+            <path d="M94 250V138l64-36 64 36v112" fill="#D4E5DA"/>
+            <path d="M84 139l74-43 74 43" stroke="#2F6C57" stroke-width="5" stroke-linecap="round"/>
+            <path d="M116 148h23v27h-23zm61 0h23v27h-23zm-61 45h23v27h-23zm61 0h23v27h-23z" fill="#F7FBF8"/>
+            <path d="M233 249V163h144v86" fill="#FAF6E7" stroke="#3E7763" stroke-width="3"/>
+            <path d="M226 162h159l-13-28H240z" fill="#41856A"/>
+            <path d="M238 134v28m27-28v28m27-28v28m27-28v28m27-28v28m27-28v28" stroke="#F4F8EF" stroke-width="12"/>
+            <path d="M252 185h44v64h-44zm63 0h43v36h-43z" fill="#C8DFD2" stroke="#3E7763" stroke-width="3"/>
+            <path d="M333 185v36m-18-18h43" stroke="#3E7763" stroke-width="2"/>
+            <path d="M411 248V108h82v140" fill="#CEDFD9"/>
+            <path d="M423 129h16v24h-16zm29 0h16v24h-16zm-29 41h16v24h-16zm29 0h16v24h-16z" fill="#F7FBF8"/>
+            <path d="M433 248v-34h29v34" fill="#89AF9E"/>
+            <path d="M544 254v-89" stroke="#34735C" stroke-width="5"/>
+            <path d="M541 201c-49-15-49-61-18-77 3-37 39-38 47-3 38 19 24 68-29 80" fill="#80AE93"/>
+            <path d="M62 256v-45" stroke="#34735C" stroke-width="4"/>
+            <ellipse cx="62" cy="202" rx="24" ry="36" fill="#9BBC9F"/>
+            <path d="M85 256h480" stroke="#34735C" stroke-width="3" stroke-linecap="round"/>
+            <path d="M356 102c0-14 21-24 21-40a21 21 0 0 0-42 0c0 16 21 26 21 40z" fill="#EB9B7D"/>
+            <circle cx="356" cy="62" r="7" fill="#FFF8EC"/>
+            <path d="M149 260h18m236 0h18" stroke="#E4B264" stroke-width="5" stroke-linecap="round"/>
+          </svg>
+          <span class="art-caption">让每一份热爱，都在城市里找到回声。</span>
+        </div>
+        <div class="story-foot"><span>发现身边</span><i></i><span>记录生活</span><i></i><span>连接同好</span></div>
+      </div>
+
+      <div class="auth-card">
+        <div class="card-top"><span class="eyebrow">你的城邻云</span><span class="small-spark" aria-hidden="true">✳</span></div>
+        <h2 id="auth-title">欢迎回来</h2>
+        <p class="muted" id="auth-description">登录账户，继续你的城市生活。</p>
+        <div class="mode-switch" role="group" aria-label="选择登录或注册">
+          <button type="button" id="login-mode" aria-pressed="true">登录</button>
+          <button type="button" id="register-mode" aria-pressed="false">注册</button>
+        </div>
+        <p class="notice" id="auth-notice" role="status" aria-live="polite" hidden></p>
+        <form id="auth-form">
+          <!-- label 的 for 与 input 的 id 对应，点击文字也能聚焦输入框。 -->
+          <fieldset id="auth-fields">
+            <label for="username">用户名</label>
+            <input id="username" name="username" autocomplete="username" required maxlength="50" placeholder="请输入登录用户名" aria-describedby="username-help">
+            <p class="field-help" id="username-help">用户名与昵称不同，请使用注册时的用户名。</p>
+            <label for="password">密码</label>
+            <div class="password-control"><input id="password" name="password" type="password" autocomplete="current-password" required placeholder="请输入密码"><button type="button" id="password-toggle" aria-controls="password" aria-pressed="false">显示</button></div>
+            <p class="field-help" id="password-help" hidden>8～64 个字符，且不超过 72 个 UTF-8 字节。</p>
+            <div id="confirm-group" hidden><label for="confirm-password">确认密码</label><input id="confirm-password" name="confirmPassword" type="password" autocomplete="new-password" placeholder="请再次输入密码"></div>
+            <button class="primary-button" id="auth-submit" type="submit">登录城邻云</button>
+          </fieldset>
+        </form>
+        <p class="auth-bottom" id="auth-bottom">很高兴，再次与你相遇。</p>
+      </div>
+    </section>
+
+    <section class="account" id="account" hidden aria-label="个人中心">
+      <div class="account-heading"><div><span class="eyebrow">MY CITYLINK</span><h1>你好，<span id="greeting-name">城邻</span>。</h1><p class="muted">让大家认识你，从一份个人资料开始。</p></div><span class="page-chip">个人中心</span></div>
+      <div class="account-grid">
+        <aside class="profile-card">
+          <div class="avatar" id="avatar"><span id="avatar-initial">邻</span><img id="avatar-image" alt="我的头像" referrerpolicy="no-referrer" hidden></div>
+          <h2 id="profile-name">正在加载</h2><p class="handle" id="profile-handle"></p>
+          <div class="profile-divider"></div><span class="profile-label">我的账户</span><span class="profile-nav">个人资料<span aria-hidden="true">●</span></span>
+          <p class="profile-hint">做真实的自己，<br>与城市里的同好相遇。</p>
+        </aside>
+        <div class="details-card">
+          <div class="details-heading"><div><h2>个人资料</h2><p class="muted">更新昵称和头像，让你的个人资料更完整。</p></div><span class="edit-mark" aria-hidden="true">✎</span></div>
+          <p class="notice" id="profile-notice" role="status" aria-live="polite" hidden></p>
+          <button type="button" class="secondary-button" id="retry-profile" hidden>重新加载资料</button>
+          <form id="profile-form">
+            <fieldset id="profile-fields" disabled>
+              <label for="account-username">用户名</label><input id="account-username" readonly aria-describedby="account-username-help"><p class="field-help" id="account-username-help">用户名用于登录，当前不支持修改。</p>
+              <label for="nickname">昵称</label><input id="nickname" name="nickname" required maxlength="50" placeholder="你希望大家怎么称呼你？"><p class="field-help">可以使用中文，最多 50 个字符。</p>
+              <label for="avatar-url">头像地址 <span class="optional">选填</span></label><input id="avatar-url" name="avatarUrl" type="url" maxlength="512" placeholder="https://example.com/avatar.jpg"><p class="field-help">填写 http 或 https 图片地址；留空使用昵称头像。</p>
+              <div class="form-actions"><button type="submit" class="primary-button" id="save-profile">保存修改</button><button type="button" class="secondary-button" id="reset-profile">恢复已保存资料</button></div>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="footer"><span>CityLink 城邻云</span><span>连接城市，也连接你我。</span></footer>
+</body>
+</html>

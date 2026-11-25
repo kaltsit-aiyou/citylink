@@ -40,6 +40,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         // 允许 Spring Boot 生成原本的错误响应。
                         .dispatcherTypeMatchers(DispatcherType.ERROR).permitAll()
+                        // 页面和静态资源允许匿名读取；个人资料接口仍要求登录。
+                        .requestMatchers(HttpMethod.GET, "/", "/index.html", "/assets/**").permitAll()
                         .requestMatchers(
                                 HttpMethod.POST,
                                 "/api/auth/register",
